@@ -37,7 +37,8 @@ func (h *AccountCreateHandler) Handler(w nhttp.ResponseWriter, r *nhttp.Request)
 	// Create account
 	account, err := h.apiCreator.Create(
 		api.AccountCreateRequest{
-			CustomerID: req.CustomerID,
+			CustomerID:    req.CustomerID,
+			InitialCredit: req.InitialCredit,
 		},
 	)
 	if err != nil {
