@@ -11,44 +11,46 @@ var (
 
 
 type TransactionCreator interface {
-	Create(dto CreateTransactionDTO) (app.Transction, error)
+	Create(dto CreateTransactionDTO) (app.Transaction, error)
 }
 
-type TransactionbReceiver interface {
-	GetByAccount(accountID int, filters... FilterApplyItem) ([]app.Transction, error)
+type TransactionReceiver interface {
+	GetByAccount(accountID int, filters... FilterApplyItem) ([]app.Transaction, error)
+	GetLastAccountTx(accountID int) (app.Transaction, bool, error)
 }
 
 type CreateTransactionDTO struct {
 	AccountID int
 	Amount float64
-	AccountAmount float64 
 }
 
 // Transaction filtration options
 
-func WithLimitOffset(limit int, offset int) FilterApplyItem {
-	return func(f *filters) {
-		f.limit = limit
-		f.offset = offset
+func WithOffsetLimit(offset int, limit int) FilterApplyItem {
+	return func(f *Filters) {
+		f.Limit = limit
+		f.Offset = offset
 	}
 }
 
 func WithDir(dir DIR) FilterApplyItem {
-	return func(f *filters) {
-		f.dir = dir
+	return func(f *Filters) {
+		f.Dir = dir
 	}
 }
 
-type FilterApplyItem func(f *filters)
+type FilterApplyItem func(f *Filters)
 
-type filters struct {
-	limit int
-	offset int
-	dir DIR
+type Filters struct {
+	Limit int
+	Offset int
+	Dir DIR
 }
 
-var trFilDef filters = filters {
-	limit: 10,
-	offset: 0,
-	dir: DIR_DESC,
+func GetDefFilters() Filters {
+	return Filters {
+		Limit: 10,
+		Offset: 0,
+		Dir: DIR_DESC,
+	}
 }

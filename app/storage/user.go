@@ -9,7 +9,7 @@ type UserCreator interface {
 }
 
 type UserReceiver interface {
-	GetUser(userID int) (app.User, error)
+	GetUser(userID int) (app.User, bool, error)
 }
 
 type CreateUserDTO struct {

@@ -11,12 +11,12 @@ var (
 
 
 type TransactionCreator interface {
-	Create(dto CreateTransactionDTO) (app.Transction, error)
+	Create(dto CreateTransactionDTO) (app.Transaction, error)
 }
 
 type TransactionbReceiver interface {
 	// Returns last limit transactions from offset related to accountID
-	GetByAccount(accountID int, limit int, offset int) ([]app.Transction, error)
+	GetByAccount(accountID int, limit int, offset int) ([]app.Transaction, error)
 }
 
 type CreateTransactionDTO struct {

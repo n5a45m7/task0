@@ -11,7 +11,7 @@ var (
 )
 
 type AccountCreator interface {
-	Create(request AccountCreateRequest) (*app.Account, error)
+	Create(request AccountCreateRequest) (app.Account, error)
 }
 
 type AccountCreateRequest struct {

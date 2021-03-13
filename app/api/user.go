@@ -1,9 +1,16 @@
 package api
 
-import "app"
+import (
+	"app"
+	"errors"
+)
+
+var (
+	ErrAPIUserUserNotFound error = errors.New("UserGetInfo Error: user not found")
+)
 
 type UserGetInfo interface {
-	GetInfo(userID int) (*UserInfo, error)
+	GetInfo(userID int) (UserInfo, error)
 }
 
 type UserInfo struct {
@@ -13,5 +20,6 @@ type UserInfo struct {
 
 type UserInfoAccount struct {
 	AData app.Account
-	Transactions []app.Transction
+	Balance float64
+	Transactions []app.Transaction
 }
