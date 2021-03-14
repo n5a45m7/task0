@@ -6,6 +6,7 @@ import (
 	storage "app/storage/memory"
 	transport "app/transport/http"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"os"
@@ -40,8 +41,10 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/account", accCreateHandler.Handler).Methods(http.MethodPost)
 	router.HandleFunc("/userinfo", userGetInfoHandler.Handler).Methods(http.MethodGet)
+
+	handler := cors.Default().Handler(router)
 	srv := &http.Server{
-		Handler: router,
+		Handler: handler,
 		Addr:    "127.0.0.1:8000",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
