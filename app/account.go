@@ -1,7 +1,7 @@
 package app
 
 type Account struct {
-	ID int
+	ID         int
 	CustomerID int
-	IsClosed bool
+	IsClosed   bool
 }

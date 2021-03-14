@@ -7,8 +7,8 @@ import (
 
 type userAPI struct {
 	userSt storage.UserReceiver
-	accSt storage.AccountReceiver
-	txSt storage.TransactionReceiver
+	accSt  storage.AccountReceiver
+	txSt   storage.TransactionReceiver
 }
 
 func NewUserAPI(
@@ -18,8 +18,8 @@ func NewUserAPI(
 ) api.UserGetInfo {
 	return &userAPI{
 		userSt: userSt,
-		accSt: accSt,
-		txSt: txSt,
+		accSt:  accSt,
+		txSt:   txSt,
 	}
 }
 
@@ -48,14 +48,14 @@ func (a *userAPI) GetInfo(userID int) (api.UserInfo, error) {
 			balance = txs[0].AccountAmount
 		}
 		result.Accounts = append(
-			result.Accounts, 
+			result.Accounts,
 			api.UserInfoAccount{
-				AData: acc,
+				AData:        acc,
 				Transactions: txs,
-				Balance: balance,
+				Balance:      balance,
 			},
-		)		
+		)
 	}
-	
+
 	return result, nil
 }

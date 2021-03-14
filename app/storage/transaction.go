@@ -9,19 +9,18 @@ var (
 	ErrStorTrCrNegativeAccountAmount error = errors.New("TransactionCreator Error: AccountAmount is negative")
 )
 
-
 type TransactionCreator interface {
 	Create(dto CreateTransactionDTO) (app.Transaction, error)
 }
 
 type TransactionReceiver interface {
-	GetByAccount(accountID int, filters... FilterApplyItem) ([]app.Transaction, error)
+	GetByAccount(accountID int, filters ...FilterApplyItem) ([]app.Transaction, error)
 	GetLastAccountTx(accountID int) (app.Transaction, bool, error)
 }
 
 type CreateTransactionDTO struct {
 	AccountID int
-	Amount float64
+	Amount    float64
 }
 
 // Transaction filtration options
@@ -42,15 +41,15 @@ func WithDir(dir DIR) FilterApplyItem {
 type FilterApplyItem func(f *Filters)
 
 type Filters struct {
-	Limit int
+	Limit  int
 	Offset int
-	Dir DIR
+	Dir    DIR
 }
 
 func GetDefFilters() Filters {
-	return Filters {
-		Limit: 10,
+	return Filters{
+		Limit:  10,
 		Offset: 0,
-		Dir: DIR_DESC,
+		Dir:    DIR_DESC,
 	}
 }

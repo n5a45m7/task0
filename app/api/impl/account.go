@@ -8,16 +8,16 @@ import (
 
 type accountAPI struct {
 	accSt storage.AccountCreator
-	txSt storage.TransactionCreator
+	txSt  storage.TransactionCreator
 }
 
 func NewAccountAPI(
-	accSt storage.AccountCreator, 
+	accSt storage.AccountCreator,
 	txSt storage.TransactionCreator,
 ) api.AccountCreator {
 	return &accountAPI{
 		accSt: accSt,
-		txSt: txSt,
+		txSt:  txSt,
 	}
 }
 
@@ -46,7 +46,7 @@ func (a *accountAPI) Create(request api.AccountCreateRequest) (app.Account, erro
 
 	_, err = a.txSt.Create(storage.CreateTransactionDTO{
 		AccountID: acc.ID,
-		Amount: request.InitialCredit,
+		Amount:    request.InitialCredit,
 	})
 	switch err {
 	case nil:
@@ -56,7 +56,6 @@ func (a *accountAPI) Create(request api.AccountCreateRequest) (app.Account, erro
 	default:
 		return acc, err
 	}
-
 
 	return acc, nil
 }

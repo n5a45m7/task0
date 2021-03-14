@@ -1,8 +1,8 @@
 package memory
 
 import (
-	"app/storage"
 	"app"
+	"app/storage"
 	"sync"
 )
 
@@ -20,7 +20,7 @@ func NewAccountStorage() interface {
 	storage.AccountReceiver
 } {
 	return &accountStorage{
-		data: make(map[int][]app.Account),
+		data:  make(map[int][]app.Account),
 		idInc: 1,
 	}
 }
@@ -30,7 +30,7 @@ func (s *accountStorage) Create(dto storage.CreateAccountDTO) (app.Account, erro
 	defer s.mu.Unlock()
 
 	entity := app.Account{
-		ID: s.idInc,
+		ID:         s.idInc,
 		CustomerID: dto.CustomerID,
 	}
 

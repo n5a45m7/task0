@@ -1,8 +1,8 @@
 package memory
 
 import (
-	"app/storage"
 	"app"
+	"app/storage"
 	"sync"
 )
 
@@ -20,7 +20,7 @@ func NewTransactionStorage() interface {
 	storage.TransactionReceiver
 } {
 	return &transactionStorage{
-		data: make(map[int][]app.Transaction),
+		data:  make(map[int][]app.Transaction),
 		idInc: 1,
 	}
 }
@@ -31,14 +31,14 @@ func (s *transactionStorage) Create(dto storage.CreateTransactionDTO) (app.Trans
 
 	// create future transaction
 	newTx := app.Transaction{
-		ID: s.idInc,
-		AccountID: dto.AccountID,
-		Amount: dto.Amount,
+		ID:            s.idInc,
+		AccountID:     dto.AccountID,
+		Amount:        dto.Amount,
 		AccountAmount: 0,
 	}
 
 	// get list of transactions for accountID
-	list,  ok := s.data[newTx.AccountID]
+	list, ok := s.data[newTx.AccountID]
 	if !ok {
 		// create slice for transactions
 		list = make([]app.Transaction, 0)
@@ -67,7 +67,7 @@ func (s *transactionStorage) Create(dto storage.CreateTransactionDTO) (app.Trans
 	return newTx, nil
 }
 
-func (s *transactionStorage) GetByAccount(accountID int, filters... storage.FilterApplyItem) ([]app.Transaction, error) {
+func (s *transactionStorage) GetByAccount(accountID int, filters ...storage.FilterApplyItem) ([]app.Transaction, error) {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
@@ -88,12 +88,12 @@ func (s *transactionStorage) GetByAccount(accountID int, filters... storage.Filt
 	sr := false
 	switch filterOptions.Dir {
 	case storage.DIR_ASC:
-		si, ei = filterOptions.Offset, filterOptions.Offset + filterOptions.Limit - 1
+		si, ei = filterOptions.Offset, filterOptions.Offset+filterOptions.Limit-1
 		if ei >= len(txs) {
-			ei = len(txs)-1
+			ei = len(txs) - 1
 		}
 	case storage.DIR_DESC:
-		si, ei = len(txs) - filterOptions.Offset - filterOptions.Limit, len(txs) - 1 - filterOptions.Offset
+		si, ei = len(txs)-filterOptions.Offset-filterOptions.Limit, len(txs)-1-filterOptions.Offset
 		if si < 0 {
 			si = 0
 		}
@@ -116,7 +116,6 @@ func (s *transactionStorage) GetByAccount(accountID int, filters... storage.Filt
 		}
 		reverse(result)
 	}
-
 
 	return result, nil
 }

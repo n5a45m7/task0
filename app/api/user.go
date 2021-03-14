@@ -14,12 +14,12 @@ type UserGetInfo interface {
 }
 
 type UserInfo struct {
-	Udata app.User
+	Udata    app.User
 	Accounts []UserInfoAccount
 }
 
 type UserInfoAccount struct {
-	AData app.Account
-	Balance float64
+	AData        app.Account
+	Balance      float64
 	Transactions []app.Transaction
 }

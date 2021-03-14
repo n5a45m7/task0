@@ -13,6 +13,6 @@ type UserReceiver interface {
 }
 
 type CreateUserDTO struct {
-	Name string
+	Name    string
 	Surname string
 }

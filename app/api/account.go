@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	ErrAPIAccCrUserNotExist error = errors.New("AccountCreator Error: User does not exist")
+	ErrAPIAccCrUserNotExist   error = errors.New("AccountCreator Error: User does not exist")
 	ErrAPIAccCrNegativeAmount error = errors.New("AccountCreator Error: Initial credit is negative")
 )
 
@@ -15,6 +15,6 @@ type AccountCreator interface {
 }
 
 type AccountCreateRequest struct {
-	CustomerID int
+	CustomerID    int
 	InitialCredit float64
 }

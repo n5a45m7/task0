@@ -1,8 +1,8 @@
 package memory
 
 import (
-	"app/storage"
 	"app"
+	"app/storage"
 	"sync"
 )
 
@@ -20,7 +20,7 @@ func NewUserStorage() interface {
 	storage.UserReceiver
 } {
 	return &userStorage{
-		data: make(map[int]app.User),
+		data:  make(map[int]app.User),
 		idInc: 1,
 	}
 }
@@ -30,8 +30,8 @@ func (s *userStorage) Create(dto storage.CreateUserDTO) (app.User, error) {
 	defer s.mu.Unlock()
 
 	entity := app.User{
-		ID: s.idInc,
-		Name: dto.Name,
+		ID:      s.idInc,
+		Name:    dto.Name,
 		Surname: dto.Surname,
 	}
 	s.data[entity.ID] = entity
