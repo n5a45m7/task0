@@ -7,21 +7,27 @@ import (
 )
 
 type accountAPI struct {
-	accSt storage.AccountCreator
-	txSt  storage.TransactionCreator
+	userSt storage.UserReceiver
+	accSt  storage.AccountCreator
+	txSt   storage.TransactionCreator
 }
 
 func NewAccountAPI(
+	userSt storage.UserReceiver,
 	accSt storage.AccountCreator,
 	txSt storage.TransactionCreator,
 ) api.AccountCreator {
 	return &accountAPI{
-		accSt: accSt,
-		txSt:  txSt,
+		userSt: userSt,
+		accSt:  accSt,
+		txSt:   txSt,
 	}
 }
 
 func (a *accountAPI) Create(request api.AccountCreateRequest) (app.Account, error) {
+	if _, ok, _ := a.userSt.GetUser(request.CustomerID); !ok {
+		return app.Account{}, api.ErrAPIUserUserNotFound
+	}
 	acc, err := a.accSt.Create(
 		storage.CreateAccountDTO{
 			CustomerID: request.CustomerID,

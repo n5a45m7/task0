@@ -16,6 +16,7 @@ ENV GOOS=linux
 ENV GOARCH=amd64
 ENV CGO_ENABLED=0
 
+RUN go clean -testcache && go test ./...
 RUN go build -v -o /app/bin main/main.go
 
 FROM scratch

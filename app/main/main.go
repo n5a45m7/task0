@@ -32,7 +32,7 @@ func main() {
 
 	// create all api
 	userAPI := api.NewUserAPI(userStorage, accStorage, txStorage)
-	accAPI := api.NewAccountAPI(accStorage, txStorage)
+	accAPI := api.NewAccountAPI(userStorage, accStorage, txStorage)
 
 	// create all handlers
 	userGetInfoHandler := transport.NewUserGetInfoHandler(userAPI)

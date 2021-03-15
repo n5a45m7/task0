@@ -55,6 +55,7 @@ func (h *AccountCreateHandler) Handler(w nhttp.ResponseWriter, r *nhttp.Request)
 		ID: account.ID,
 	}
 	b, _ = json.Marshal(resp)
+	w.Header().Add("content-type", "application/json")
 	w.Write(b)
 }
 

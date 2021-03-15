@@ -61,6 +61,7 @@ func (h *UserGetInfoHandler) Handler(w nhttp.ResponseWriter, r *nhttp.Request) {
 		resp.Accounts = append(resp.Accounts, accResp)
 	}
 	b, _ := json.Marshal(resp)
+	w.Header().Add("content-type", "application/json")
 	w.Write(b)
 }
 
