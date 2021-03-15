@@ -43,3 +43,23 @@ Other run you only up command as everything is already build: ```make up```
 To avoid situation when port is already allocated on your machine you should create (edit) .env file and set available port values
 
 After successful deploy frontend application will be available by http://localhost:{FRONT_HOST_MACHINE_PORT}
+
+## Description
+There are two parts
+- /app - golang backend application
+- /front - react frontend application
+
+both are wrapped in docker and deployed with docker-compose.
+
+Structure of backend application:
+- /app*.go - application entities
+- /app/main - start point
+- /app/api - api layer separate from real transport
+- /app/storage - storage layer
+- /app/transport - transport layer
+
+There are three main layers, from top to bottom they are: transport -> api -> storage. Each layer interacts with the bottom layer through interface. F.e. api depends on storage through the interface, we could implement a new storage layer and path it to api without actually transforming api.
+
+Tests are implemented and run on the build stage.
+
+Transaction store the current account amount. To determine the account amount you need to check the last transaction.
