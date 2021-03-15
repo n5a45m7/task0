@@ -13,7 +13,6 @@ interface IProps {
 const PageUserInfoComponent = ({store, user}: IProps) => {
   const {id, name, surname, accounts, load, loading, error} = store
   useEffect(() => {
-    console.log('use effect call')
     load(user)
   }, [load, user]);
   return (
