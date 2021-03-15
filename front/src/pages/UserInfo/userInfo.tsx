@@ -25,10 +25,10 @@ const PageUserInfoComponent = ({store, user}: IProps) => {
               ? error
               : 
               <>
-                <div>User Data</div>
+                <div className="yellow">User Info:</div>
                 <UserInfo id={id} name={name} surname={surname}></UserInfo>           
                 { accounts?.length > 0 && <>
-                  <div>User Accounts</div>
+                  <div className="yellow">Accounts:</div>
                   <div>
                     {accounts.map((acc, index) => 
                       <div key={index}><Account id={acc.id} balance={acc.balance} txs={acc.txs}></Account></div>

@@ -12,15 +12,16 @@ interface IProps {
 
 export const AccountComponent = ({id, balance, txs}: IProps) => {
   return (
-    <div>
+    <div className="account">
         <div>ID: {id}</div>
         <div>Balance: {balance}</div>
-        {txs && <>
-            <div>Transactions:</div>
+        {txs?.length > 0 && <>
+          <div className="yellow">Transactions:</div>
             {txs.map((tx, index) => <div key={index}>
                 <Transaction id={tx.id} amount={tx.amount}></Transaction>
             </div>)}
         </>}
+        <hr />
     </div>
   );
 }

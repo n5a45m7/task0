@@ -9,7 +9,7 @@ interface IProps {
 
 const UserInfoComponent = ({id, name, surname}: IProps) => {
   return (
-    <div>
+    <div className="userInfo">
         <div>ID: {id}</div>
         <div>Name: {name}</div>
         <div>Surname: {surname}</div>

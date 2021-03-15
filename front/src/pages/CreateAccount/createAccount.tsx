@@ -35,8 +35,8 @@ const PageCreateAccountComponent = ({store, user}: IProps) => {
       <p></p>
       <div>
         <label>
-          Inital Credit:
-          <input type="number" min={0} value={initalCredit} onChange={handleChange} />
+          <div>Inital Credit:</div>
+          <div><input type="number" min={0} value={initalCredit} onChange={handleChange} /></div>
         </label>
       </div>
       <div>
@@ -55,8 +55,8 @@ const PageCreateAccountComponent = ({store, user}: IProps) => {
               : response?.id
                 ?
                   <div>
-                    Created account with id = {response?.id}
-                    <a onClick={() => { reset() }}>Create one more</a>
+                    <div>Created account with id = {response?.id}</div>
+                    <div><a onClick={() => { reset() }}>Create one more</a></div>
                   </div>
                 :
                 createAccountComponent

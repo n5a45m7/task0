@@ -8,7 +8,7 @@ interface IProps {
 
 export const TransactionComponent = ({id, amount}: IProps) => {
   return (
-    <div>
+    <div className="transaction">
         <div>ID: {id}</div>
         <div>Amount: {amount}</div>
     </div>

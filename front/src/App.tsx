@@ -53,16 +53,13 @@ const routes = [
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
       <Router>
-          <div>
-            <ul>
+          <div className="content">
               {routes.map((item, index) => 
-                <li key={index}>
+                <div>
                   <Link to={item.route}>{item.label}</Link>
-              </li>
+                </div>
               )}
-            </ul>
 
             <hr />
 
@@ -82,7 +79,6 @@ function App() {
             </Switch>
           </div>
         </Router>
-      </header>
     </div>
   );
 }
