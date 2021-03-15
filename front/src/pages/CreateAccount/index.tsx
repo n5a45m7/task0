@@ -1,0 +1,1 @@
+export {PageCreateAccount} from './createAccount'

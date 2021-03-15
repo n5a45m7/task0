@@ -1,0 +1,37 @@
+a {
+  color: #61dafb;
+  cursor: pointer;
+  text-decoration-line: none;
+}
+
+div {
+  padding: 2px 0px;
+}
+
+.yellow {
+  color: yellowgreen;
+}
+
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 10%;
+}
+
+.App .content .userInfo {
+  padding: 8px 0px;
+
+}
+
+.App .content .account {
+  padding: 8px 0px;
+  padding-left: 32px;
+}
+
+.App .content .account .transaction {
+  padding: 8px 0px;
+  padding-left: 32px;
+}
