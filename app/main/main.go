@@ -45,7 +45,7 @@ func main() {
 	handler := cors.Default().Handler(router)
 	srv := &http.Server{
 		Handler: handler,
-		Addr:    "127.0.0.1:8000",
+		Addr:    ":8000",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,

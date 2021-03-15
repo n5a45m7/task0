@@ -19,8 +19,15 @@ const user: IUser = {
   id: 1,
 }
 
+// check env
+if (!process.env.REACT_APP_API_BASE_URL) {
+  throw new Error("REACT_APP_API_BASE_URL not specified")
+}
+
 // api
-const config: IAPIConfig = {baseURL: 'http://127.0.0.1:8000'}
+const config: IAPIConfig = {
+  baseURL: process.env.REACT_APP_API_BASE_URL
+}
 const userInfoAPI = new UserInfoAPI(config)
 const accountCreateAPI = new AccountCreateAPI(config)
 // --

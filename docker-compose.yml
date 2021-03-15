@@ -1,0 +1,14 @@
+version: '3.6'
+services:
+  app:
+    build: ./app/
+    ports:
+      - "${APP_HOST_MACHINE_PORT}:8000"
+  front:
+    build: 
+      context: ./front/
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: "http://localhost:${APP_HOST_MACHINE_PORT}"
+    ports:
+      - "${FRONT_HOST_MACHINE_PORT}:80"
